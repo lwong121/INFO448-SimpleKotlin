@@ -10,15 +10,15 @@ class Library {
 
 // write a "whenFn" that takes an arg of type "Any" and returns a String
 
-fun whenFn(value: Any): String {
-    return when(value) {
+fun whenFn(x: Any): String {
+    return when(x) {
         "Hello" -> "world"
         "Howdy", "Bonjour" -> "Say what?"
         0 -> "zero"
         1 -> "one"
         in 2..10 -> "low number"
         is Int -> "a number"
-        else -> "I don't understand"
+        else -> "I don't understand" // just return this if it is any other string or int
     }
 }
 
@@ -43,7 +43,7 @@ fun mathOp(n1: Int, n2: Int, mathFunc: (Int, Int) -> Int): Int {
 // write a class "Person" with first name, last name and age
 
 class Person(val firstName: String, val lastName: String, var age: Int) {
-    val debugString: String = "[Person firstName:" + firstName + " lastName:" + lastName + " age:" + age + "]"
+    val debugString: String = "[Person firstName:$firstName lastName:$lastName age:$age]"
 }
 
 // write a class "Money" with amount and currency, and define a convert() method and the "+" operator
@@ -59,7 +59,7 @@ class Money(val amount: Int, val currency: String) {
 
     fun convert(convertToCurrency: String): Money {
         if (!allowedCurrencyArr.contains(convertToCurrency)) {
-            throw IllegalArgumentException("Incorrect currency type to convert to.")
+            throw IllegalArgumentException("Invalid currency type to convert to.")
         }
 
         var conversionRate: Double = 1.0
